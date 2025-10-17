@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Globe } from 'lucide-react';
+import { Github, Globe } from 'lucide-react';
 
 export default function HomePage() {
   const [username, setUsername] = useState('');
@@ -26,7 +26,7 @@ export default function HomePage() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900">
       <div className="max-w-md w-full text-center p-8">
         <div className="flex justify-center items-center mb-6">
-          <Globe className="w-16 h-16 text-blue-500" />
+          <Github className="w-16 h-16 text-blue-500" />
         </div>
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
           GitLens.AI
@@ -37,7 +37,7 @@ export default function HomePage() {
         <div className="flex w-full items-center space-x-2">
           <Input
             type="text"
-            placeholder="e.g., torvalds"
+            placeholder="e.g., randomfunction"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             onKeyDown={handleKeyDown}
