@@ -5,47 +5,47 @@
 
 @layer base {
   :root {
-    --background: hsl(240 10% 3.9%);
+    --background: hsl(240 10% 3.9%/0.85);
     --foreground: hsl(0 0% 98%);
-    --card: hsl(240 5% 10%);
+    --card: hsl(240 5% 10%/0.85);
     --card-foreground: hsl(0 0% 98%);
-    --popover: hsl(240 5% 10%);
+    --popover: hsl(240 5% 10%/0.85);
     --popover-foreground: hsl(0 0% 98%);
     --primary: hsl(0 0% 98%);
     --primary-foreground: hsl(240 10% 3.9%);
-    --secondary: hsl(240 5% 10%);
+    --secondary: hsl(240 5% 10%/0.85);
     --secondary-foreground: hsl(0 0% 98%);
-    --muted: hsl(240 5% 10%);
+    --muted: hsl(240 5% 10%/0.85);
     --muted-foreground: hsl(240 5% 65%);
     --accent: hsl(210 90% 55%);
     --accent-foreground: hsl(0 0% 98%);
     --destructive: hsl(0 84.2% 60.2%);
     --destructive-foreground: hsl(0 0% 98%);
-    --border: hsl(240 3.7% 15.9%);
-    --input: hsl(240 3.7% 15.9%);
+    --border: hsl(240 3.7% 15.9%/0.85);
+    --input: hsl(240 3.7% 15.9%/0.85);
     --ring: hsl(210 90% 55%);
     --radius: 0.75rem;
   }
 
   .dark {
-    --background: hsl(240 10% 3.9%);
+    --background: hsl(240 10% 3.9%/0.85);
     --foreground: hsl(0 0% 98%);
-    --card: hsl(240 5% 10%);
+    --card: hsl(240 5% 10%/0.85);
     --card-foreground: hsl(0 0% 98%);
-    --popover: hsl(240 5% 10%);
+    --popover: hsl(240 5% 10%/0.85);
     --popover-foreground: hsl(0 0% 98%);
     --primary: hsl(0 0% 98%);
     --primary-foreground: hsl(240 10% 3.9%);
-    --secondary: hsl(240 5% 10%);
+    --secondary: hsl(240 5% 10%/0.85);
     --secondary-foreground: hsl(0 0% 98%);
-    --muted: hsl(240 5% 10%);
+    --muted: hsl(240 5% 10%/0.85);
     --muted-foreground: hsl(240 5% 65%);
     --accent: hsl(210 90% 55%);
     --accent-foreground: hsl(0 0% 98%);
     --destructive: hsl(0 84.2% 60.2%);
     --destructive-foreground: hsl(0 0% 98%);
-    --border: hsl(240 3.7% 15.9%);
-    --input: hsl(240 3.7% 15.9%);
+    --border: hsl(240 3.7% 15.9%/0.85);
+    --input: hsl(240 3.7% 15.9%/0.85);
     --ring: hsl(210 90% 55%);
   }
 }
@@ -64,12 +64,29 @@
       "Noto Color Emoji";
     scroll-behavior: smooth;
   }
-  h1,
+  body::before{
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(8px);
+    transform: scale(1.2);
+    z-index: -1;
+    opacity: 0.3;
+  }
+    h1,
   h2,
   h3 {
     color: var(--foreground);
     font-weight: 600;
   }
+  
   p,
   span,
   div {
