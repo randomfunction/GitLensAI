@@ -133,9 +133,11 @@ def recommend_for_username(username: str, top_k=10):
     
     # Stage 1: Map user repos to our dataset via description similarity
     mapped_names = map_user_repos_to_dataset(user_repos, top_k_map=3)
+    print(mapped_names)
     
     # Get the GNN embeddings for the mapped repos
     mapped_indices = [i for i, name in enumerate(gnn_repo_names) if name in mapped_names]
+    print(mapped_indices)
     
     if not mapped_indices:
         logger.warning(f"Could not map any of {username}'s repos to the GNN dataset.")
@@ -143,15 +145,20 @@ def recommend_for_username(username: str, top_k=10):
 
     # Stage 2: Create a user vector and find similar repos in GNN space
     user_vector = np.mean(gnn_embs[mapped_indices], axis=0, keepdims=True)
+    print(user_vector)
     
     # Calculate similarity between user vector and all GNN embeddings
     gnn_sims = cosine_similarity(user_vector, gnn_embs)[0]
+    print(gnn_sims)
     
     # Get top recommendations, excluding repos the user is already mapped to
     ordered_indices = np.argsort(gnn_sims)[::-1]
+    print(ordered_indices)
     
     recommendations = []
     user_original_repo_names = {r.get("name") for r in user_repos}
+    print(user_original_repo_names)
+    
 
     for idx in ordered_indices:
         repo_name = gnn_repo_names[idx]
@@ -165,7 +172,9 @@ def recommend_for_username(username: str, top_k=10):
             break
             
     logger.info(f"Generated {len(recommendations)} recommendations for {username}.")
+    print(recommendations)
     return recommendations
+
 
 # --- API Endpoint ---
 @app.get("/recommend")
@@ -173,6 +182,7 @@ def recommend(username: str = Query(..., description="GitHub username to generat
               top_k: int = Query(10, description="The number of recommendations to return.")):
     try:
         results = recommend_for_username(username, top_k=top_k)
+        print(results)
         if not results:
             raise HTTPException(status_code=404, detail="Could not generate recommendations. The user may have no repositories, or none that could be mapped to the dataset.")
         return {"username": username, "recommendations": results}

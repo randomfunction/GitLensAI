@@ -16,7 +16,17 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: errorData.detail || 'An error occurred' }, { status: response.status });
     }
     const data = await response.json();
-    return NextResponse.json(data);
+
+    // Transform the data to match the frontend's expectation
+    const transformedData = {
+      ...data,
+      recommendations: data.recommendations.map((rec: any) => ({
+        repo_name: rec.repo,
+        similarity: rec.score,
+      })),
+    };
+
+    return NextResponse.json(transformedData);
   } catch (error) {
     return NextResponse.json({ error: 'Failed to fetch recommendations' }, { status: 500 });
   }

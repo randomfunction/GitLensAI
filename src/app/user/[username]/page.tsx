@@ -180,21 +180,21 @@ const RecommendationsCard = ({ username }: { username: string }) => {
         </Button>
         {error && <p className="text-red-500 mt-4">{error}</p>}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-          {recommendations.map((rec) => (
-            <Card key={rec.repo_name}>
+          {recommendations.map((rec, index) => (
+            <Card key={`${rec.repo_name}-${index}`}>
               <CardHeader>
                 <CardTitle>{rec.repo_name}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p>Similarity: {(rec.similarity * 100).toFixed(2)}%</p>
-                <a 
+                {/* <a 
                   href={`https://github.com/${rec.repo_name}`}
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-blue-500 hover:underline mt-2 inline-block"
                 >
                   View on GitHub
-                </a>
+                </a> */}
               </CardContent>
             </Card>
           ))}
