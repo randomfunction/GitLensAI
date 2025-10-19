@@ -140,6 +140,70 @@ const AnalysisCard = ({ analysis, loading }: { analysis: string; loading: boolea
   </Card>
 );
 
+interface Recommendation {
+  repo_name: string;
+  similarity: number;
+  language?: string;
+}
+
+const RecommendationsCard = ({ username }: { username: string }) => {
+  const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleFetchRecommendations = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch(`/api/recommend?username=${username}`);
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.error || 'Failed to fetch recommendations');
+      }
+      const data = await res.json();
+      setRecommendations(data.recommendations);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'An unknown error occurred');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Personalized Recommendations</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Button onClick={handleFetchRecommendations} disabled={loading}>
+          {loading ? 'Loading...' : 'Get Recommendations'}
+        </Button>
+        {error && <p className="text-red-500 mt-4">{error}</p>}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+          {recommendations.map((rec) => (
+            <Card key={rec.repo_name}>
+              <CardHeader>
+                <CardTitle>{rec.repo_name}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p>Similarity: {(rec.similarity * 100).toFixed(2)}%</p>
+                <a 
+                  href={`https://github.com/${rec.repo_name}`}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:underline mt-2 inline-block"
+                >
+                  View on GitHub
+                </a>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
 // --- Main Page Component --- //
 
 export default function UserPage() {
@@ -240,6 +304,8 @@ export default function UserPage() {
             <CardContent><p>{error}</p></CardContent>
           </Card>
         )}
+
+        <RecommendationsCard username={username} />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <LanguageChart repos={repos} />

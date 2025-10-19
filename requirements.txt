@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+torch
+requests
+python-dotenv
+pandas
+sentence-transformers
+scikit-learn
+numpy
