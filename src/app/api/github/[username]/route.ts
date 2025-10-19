@@ -1,17 +1,13 @@
-
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import type { GitHubUser, GitHubRepo } from '@/types';
 
 export async function GET(
-  request: Request,
-  { params }: { params: { username: string } }
+  request: NextRequest,
+  context: { params: Promise<{ username: string }> }
 ) {
-  const { username } = params;
-
-  if (!username) {
-    return NextResponse.json({ error: 'Username is required' }, { status: 400 });
-  }
-
+  const { username } = await context.params
+  if (!username) return NextResponse.json({ error: 'Username is required' }, { status: 400 })
+  
   try {
     const [userRes, reposRes] = await Promise.all([
       fetch(`https://api.github.com/users/${username}`, {

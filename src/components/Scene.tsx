@@ -5,7 +5,7 @@
   import { Box } from '@react-three/drei';
 
   function RotatingBox() {
-    const meshRef = useRef<any>();
+    const meshRef = useRef<any>(null);
 
     useFrame(() => {
       if (meshRef.current) {
