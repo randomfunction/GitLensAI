@@ -12,18 +12,18 @@
     --popover: hsl(240 5% 10%/0.85);
     --popover-foreground: hsl(0 0% 98%);
     --primary: hsl(0 0% 98%);
-    --primary-foreground: hsl(240 10% 3.9%);
+    --primary-foreground: hsl(0 0% 98%);
     --secondary: hsl(240 5% 10%/0.85);
     --secondary-foreground: hsl(0 0% 98%);
     --muted: hsl(240 5% 10%/0.85);
-    --muted-foreground: hsl(240 5% 65%);
-    --accent: hsl(210 90% 55%);
+    --muted-foreground: hsl(240 5% 85%);
+    --accent: hsl(0, 0%, 0%);
     --accent-foreground: hsl(0 0% 98%);
     --destructive: hsl(0 84.2% 60.2%);
     --destructive-foreground: hsl(0 0% 98%);
     --border: hsl(240 3.7% 15.9%/0.85);
     --input: hsl(240 3.7% 15.9%/0.85);
-    --ring: hsl(210 90% 55%);
+    --ring: hsl(0, 0%, 0%);
     --radius: 0.75rem;
   }
 
@@ -35,11 +35,11 @@
     --popover: hsl(240 5% 10%/0.85);
     --popover-foreground: hsl(0 0% 98%);
     --primary: hsl(0 0% 98%);
-    --primary-foreground: hsl(240 10% 3.9%);
+    --primary-foreground: hsl(0 0% 98%);
     --secondary: hsl(240 5% 10%/0.85);
     --secondary-foreground: hsl(0 0% 98%);
     --muted: hsl(240 5% 10%/0.85);
-    --muted-foreground: hsl(240 5% 65%);
+    --muted-foreground: hsl(240 5% 85%);
     --accent: hsl(210 90% 55%);
     --accent-foreground: hsl(0 0% 98%);
     --destructive: hsl(0 84.2% 60.2%);
@@ -55,12 +55,15 @@
     border-color: hsl(var(--border));
   }
   body {
-    background-color: #0A1128;
+    background-color: hsl(0, 0%, 100%);
     color: hsl(var(--foreground));
-    background-image: linear-gradient(180deg, #0A1128 0%, #1B2A49 100%);
+    font-family: var(--font-raleway), sans-serif;
+  }
+
+  .animated-gradient-background {
+    background-image: linear-gradient(180deg, #ffffff 0%, #6b6b6b 100%);
     animation: gradient-animation 15s ease infinite;
     background-size: 200% 200%;
-    font-family: var(--font-raleway), sans-serif;
   }
 
   @keyframes gradient-animation {

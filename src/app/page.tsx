@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 
 export default function NewHomePage() {
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full h-screen overflow-hidden animated-gradient-background">
       <div className="absolute inset-0">
         <Scene/>
       </div>
@@ -36,7 +36,7 @@ export default function NewHomePage() {
           <Link href="/analyze" passHref>
             <Button
               variant="outline"
-              className="bg-transparent border-2 border-sky-400 text-sky-400 hover:bg-sky-400 hover:text-black transition-all duration-300 shadow-[0_0_15px_#38BDF8] hover:shadow-[0_0_25px_#38BDF8] px-8 py-6 text-lg"
+              className="bg-transparent border-2 border-black text-black hover:bg-black hover:text-white transition-all duration-300 shadow-[0_0_15px_#000000] hover:shadow-[0_0_25px_#000000] px-8 py-6 text-lg"
             >
               Analyze Profile
             </Button>
@@ -44,7 +44,7 @@ export default function NewHomePage() {
           <Link href="/compare" passHref>
             <Button
               variant="outline"
-              className="bg-transparent border-2 border-sky-400 text-sky-400 hover:bg-sky-400 hover:text-black transition-all duration-300 shadow-[0_0_15px_#38BDF8] hover:shadow-[0_0_25px_#38BDF8] px-8 py-6 text-lg"
+              className="bg-transparent border-2 border-black text-black hover:bg-black hover:text-white transition-all duration-300 shadow-[0_0_15px_#000000] hover:shadow-[0_0_25px_#000000] px-8 py-6 text-lg"
             >
               Compare Profiles
             </Button>
