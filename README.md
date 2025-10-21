@@ -6,14 +6,14 @@
 
 ## Project Description
 
-This project is designed to provide a comprehensive and visually engaging analysis of GitHub users. By leveraging a combination of machine learning models and the Google Gemini API, GitLens.AI goes beyond simple statistics to offer a deeper understanding of a developer's skills and interests. The application is built with a modern tech stack, featuring a Next.js frontend, a Python backend for recommendations, and a visually appealing interface with 3D elements.
+This project is designed to provide a comprehensive and visually engaging analysis of GitHub users. By leveraging a combination of machine learning models and the Mistral AI API, GitLens.AI goes beyond simple statistics to offer a deeper understanding of a developer's skills and interests. The application is built with a modern tech stack, featuring a Next.js frontend, a Python backend for recommendations, and a visually appealing interface with 3D elements.
 
 ## Features
 
 - **GitHub Profile Analysis**: Fetches and displays a user's public profile information (avatar, bio, followers, etc.).
 - **Repository Insights**: Shows a user's top repositories, sorted by stars.
 - **Language Analysis**: Calculates and displays the user's most frequently used programming languages in a pie chart.
-- **AI-Powered Summary**: Uses the Google Gemini API to generate a natural language summary of the user's coding strengths, domains of expertise, and primary languages.
+- **AI-Powered Summary**: Uses the Mistral AI API to generate a natural language summary of the user's coding strengths, domains of expertise, and primary languages.
 - **Repository Recommendations**: A Python-based service that uses a Graph Neural Network (GNN) and sentence transformers to recommend new repositories to the user.
 - **Interactive 3D Globe**: A 3D globe on the homepage to visualize the user's global presence.
 - **Responsive UI**: Clean, minimal, and responsive interface built with Tailwind CSS and shadcn/ui.
@@ -24,7 +24,7 @@ This project is designed to provide a comprehensive and visually engaging analys
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
 - **3D Graphics**: [Three.js](https://threejs.org/) and [@react-three/fiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction)
-- **AI/LLM**: [Google Gemini API](https://ai.google.dev/)
+- **AI/LLM**: [Mistral AI API](https://ai.google.dev/)
 - **Recommendation Service**:
     - **Framework**: [FastAPI](https://fastapi.tiangolo.com/)
     - **ML Models**: [PyTorch](https://pytorch.org/), [Sentence-Transformers](https://www.sbert.net/), [Scikit-learn](https://scikit-learn.org/)
@@ -63,10 +63,10 @@ Follow these instructions to get a local copy up and running.
 
 ### Environment Variables
 
-To run the application, you need to set up your environment variables. Create a file named `.env.local` in the root of your project and add your Google Gemini API key.
+To run the application, you need to set up your environment variables. Create a file named `.env.local` in the root of your project and add your Mistral AI API key.
 
 ```.env.local
-GEMINI_API_KEY="YOUR_GEMINI_API_KEY"
+MISTRAL_API_KEY="YOUR_MISTRAL_API_KEY"
 GITHUB_TOKEN="YOUR_GITHUB_TOKEN"
 ```
 
@@ -101,7 +101,7 @@ The project is organized as follows:
 /src
 ├── app/
 │   ├── api/
-│   │   ├── analyze/route.ts       # Gemini API route
+│   │   ├── analyze/route.ts       # Mistral AI API route
 │   │   └── github/[username]/route.ts # GitHub API route
 │   ├── user/[username]/page.tsx # Dynamic page for displaying results
 │   ├── layout.tsx               # Root layout
@@ -121,4 +121,4 @@ The project is organized as follows:
 
 ## Deployment
 
-The easiest way to deploy this Next.js app is to use the [Vercel Platform](https://vercel.com/new). Make sure to set up the `GEMINI_API_KEY` and `GITHUB_TOKEN` environment variables in your Vercel project settings. The Python backend will need to be deployed separately (e.g., on a service like Heroku or AWS).
+The easiest way to deploy this Next.js app is to use the [Vercel Platform](https://vercel.com/new). Make sure to set up the `MISTRAL_API_KEY` and `GITHUB_TOKEN` environment variables in your Vercel project settings. The Python backend will need to be deployed separately (e.g., on a service like Heroku or AWS).
